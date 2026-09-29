@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlugaFacil | Plataforma de Aluguel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+
+  <main class="container">
+    <header class="hero">
+      <h1>AlugaFacil</h1>
+      <p>Seu hub para locacao profissional de equipamentos, com controle real de estoque e alugueis.</p>
+    </header>
+
+    <section class="panel auth-panel">
+      <h2>Acesso</h2>
+      <p class="panel-subtitle">Crie sua conta para reservar itens com seguranca e acompanhar seus pedidos.</p>
+      <div class="auth-grid">
+        <form id="registerForm" class="card-form">
+          <h3>Criar conta</h3>
+          <input type="text" name="name" placeholder="Nome" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="password" name="password" placeholder="Senha (min. 6)" required />
+          <button type="submit">Registrar</button>
+        </form>
+
+        <form id="loginForm" class="card-form">
+          <h3>Entrar</h3>
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="password" name="password" placeholder="Senha" required />
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <p id="authStatus" class="status"></p>
+    </section>
+
+    <section class="panel dashboard-panel">
+      <div class="panel-head">
+        <h2>Dashboard de Alugueis</h2>
+        <button id="logoutButton" class="btn-secondary">Sair</button>
+      </div>
+      <p id="welcomeText" class="panel-subtitle"></p>
+
+      <div class="top-grid">
+        <article class="profile-card">
+          <div class="profile-avatar" id="profileAvatar">--</div>
+          <div>
+            <strong id="profileName">Visitante</strong>
+            <p id="profileEmail" class="profile-email">Sem sessao ativa</p>
+          </div>
+        </article>
+
+        <article class="onboarding-card">
+          <h3>Primeiros passos</h3>
+          <ul id="onboardingList" class="onboarding-list"></ul>
+        </article>
+      </div>
+
+      <div class="kpi-grid" id="kpiGrid">
+        <article class="kpi-card">
+          <span>Itens ativos</span>
+          <strong id="kpiItems">0</strong>
+        </article>
+        <article class="kpi-card">
+          <span>Alugueis em andamento</span>
+          <strong id="kpiActiveRentals">0</strong>
+        </article>
+        <article class="kpi-card">
+          <span>Total investido</span>
+          <strong id="kpiTotalValue">R$ 0,00</strong>
+        </article>
+      </div>
+
+      <section class="study-note">
+        <h3>Modo estudo</h3>
+        <p>Fluxo recomendado: 1) faca login, 2) crie um aluguel, 3) acompanhe os indicadores, 4) abra o BI executivo para analise.</p>
+      </section>
+
+      <div class="grid-two">
+        <div>
+          <h3>Itens disponiveis</h3>
+          <ul id="itemsList" class="list"></ul>
+        </div>
+
+        <div>
+          <h3>Novo aluguel</h3>
+          <form id="rentalForm" class="card-form">
+            <select name="itemId" id="itemIdSelect" required></select>
+            <input type="number" name="quantity" min="1" value="1" required />
+            <small class="helper-text">Dica: comece com quantidade 1 para validar o fluxo.</small>
+            <label>Data inicio</label>
+            <input type="date" name="startDate" required />
+            <label>Data fim</label>
+            <input type="date" name="endDate" required />
+            <button type="submit" id="createRentalButton">Criar aluguel</button>
+          </form>
+        </div>
+      </div>
+
+      <section id="adminPanel" class="admin-panel" aria-hidden="true">
+        <div class="panel-head compact">
+          <h3>Painel administrativo de itens</h3>
+          <span class="pill active">Administrador</span>
+        </div>
+        <form id="adminItemForm" class="card-form">
+          <input type="hidden" id="adminItemId" />
+          <input type="text" id="adminItemName" placeholder="Nome do item" required />
+          <input type="text" id="adminItemDescription" placeholder="Descricao" />
+          <div class="inline-grid">
+            <input type="number" id="adminItemDailyRate" step="0.01" min="1" placeholder="Diaria" required />
+            <input type="number" id="adminItemStock" min="0" placeholder="Estoque" required />
+          </div>
+          <div class="inline-actions">
+            <button type="submit" id="adminSaveButton">Salvar item</button>
+            <button type="button" id="adminCancelEditButton" class="btn-secondary">Cancelar edicao</button>
+          </div>
+        </form>
+        <p id="adminStatus" class="status"></p>
+      </section>
+
+      <div class="rentals-section">
+        <h3>Meus alugueis</h3>
+        <div class="filters-grid">
+          <select id="filterStatus">
+            <option value="all">Todos os status</option>
+            <option value="active">Em andamento</option>
+            <option value="cancelled">Cancelados</option>
+            <option value="finished">Finalizados</option>
+          </select>
+          <input type="text" id="filterSearch" placeholder="Buscar por item" />
+          <input type="date" id="filterStartDate" />
+          <input type="date" id="filterEndDate" />
+          <button id="clearFiltersButton" type="button" class="btn-secondary">Limpar filtros</button>
+          <button id="exportCsvButton" type="button">Exportar CSV</button>
+        </div>
+        <ul id="rentalsList" class="list"></ul>
+      </div>
+
+      <section class="reports-section">
+        <div class="panel-head compact">
+          <h3>Relatorios rapidos</h3>
+          <a class="bi-link" href="bi.html">Abrir BI Executivo</a>
+        </div>
+
+        <div class="report-controls">
+          <select id="reportScope">
+            <option value="mine">Meus dados</option>
+            <option value="all">Todo o sistema (admin)</option>
+          </select>
+          <select id="reportRange">
+            <option value="7d">Ultimos 7 dias</option>
+            <option value="30d" selected>Ultimos 30 dias</option>
+            <option value="90d">Ultimos 90 dias</option>
+            <option value="mtd">Mes atual</option>
+            <option value="all">Todo periodo</option>
+          </select>
+          <select id="reportStatus">
+            <option value="all">Todos os status</option>
+            <option value="active">Em andamento</option>
+            <option value="finished">Finalizados</option>
+            <option value="cancelled">Cancelados</option>
+          </select>
+          <input type="date" id="reportFrom" />
+          <input type="date" id="reportTo" />
+          <button id="applyReportFiltersButton" type="button" class="btn-secondary">Aplicar relatorio</button>
+          <button id="exportReportCsvButton" type="button">CSV relatorio</button>
+        </div>
+
+        <div class="range-chips" id="rangeChips">
+          <button type="button" class="range-chip" data-range="7d">7 dias</button>
+          <button type="button" class="range-chip active" data-range="30d">30 dias</button>
+          <button type="button" class="range-chip" data-range="90d">90 dias</button>
+          <button type="button" class="range-chip" data-range="mtd">Mes atual</button>
+        </div>
+        <p id="reportStatusMessage" class="status"></p>
+
+        <div class="report-kpis">
+          <article class="kpi-card">
+            <span>Receita confirmada</span>
+            <strong id="reportRevenue">R$ 0,00</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Taxa de cancelamento</span>
+            <strong id="reportCancelRate">0%</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Item mais alugado</span>
+            <strong id="reportTopItem">-</strong>
+          </article>
+        </div>
+
+        <div class="health-score" id="healthScoreCard">
+          <div>
+            <span>Saude operacional</span>
+            <strong id="healthScoreValue">0/100</strong>
+          </div>
+          <p id="healthScoreReason" class="panel-subtitle">Aguardando dados para analise.</p>
+        </div>
+        <p id="reportTrendMessage" class="status"></p>
+
+        <div id="reportAlerts" class="report-alerts"></div>
+
+        <div>
+          <h4>Popularidade dos itens (filtros atuais)</h4>
+          <ul id="reportTopItemsList" class="list"></ul>
+        </div>
+
+        <div class="chart-panel">
+          <h4>Grafico mensal (receita + volume de alugueis)</h4>
+          <svg id="monthlyRevenueChart" viewBox="0 0 680 260" role="img" aria-label="Grafico de receita mensal"></svg>
+        </div>
+
+        <div class="chart-panel">
+          <h4>Heatmap de sazonalidade por dia da semana</h4>
+          <div id="weekdayHeatmap" class="weekday-heatmap"></div>
+        </div>
+
+        <div>
+          <h4>Evolucao mensal</h4>
+          <ul id="reportMonthlyList" class="list"></ul>
+        </div>
+      </section>
+
+      <p id="dashboardStatus" class="status"></p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlugaFacil | BI Executivo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="bi.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div>
+        <h1>BI Executivo</h1>
+        <p id="profileText">Carregando perfil...</p>
+      </div>
+      <div class="actions">
+        <a href="index.html" class="secondary">Voltar ao dashboard</a>
+        <button id="exportPdfButton" type="button" class="secondary">Exportar PDF</button>
+        <button id="logoutButton" type="button" class="danger">Sair</button>
+      </div>
+    </header>
+
+    <section class="panel controls">
+      <h2>Filtros do relatorio</h2>
+      <p class="hint">Dica de leitura: primeiro veja os KPIs, depois YoY/previsao e por fim valide alertas + heatmap.</p>
+      <div class="grid">
+        <select id="scope">
+          <option value="mine">Meus dados</option>
+          <option value="all">Todo o sistema (admin)</option>
+        </select>
+        <select id="range">
+          <option value="7d">Ultimos 7 dias</option>
+          <option value="30d" selected>Ultimos 30 dias</option>
+          <option value="90d">Ultimos 90 dias</option>
+          <option value="mtd">Mes atual</option>
+          <option value="all">Todo periodo</option>
+        </select>
+        <select id="status">
+          <option value="all">Todos os status</option>
+          <option value="active">Em andamento</option>
+          <option value="finished">Finalizados</option>
+          <option value="cancelled">Cancelados</option>
+        </select>
+        <input id="fromDate" type="date" />
+        <input id="toDate" type="date" />
+        <button id="applyFilters" type="button">Atualizar BI</button>
+      </div>
+      <p id="statusMessage" class="status"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Indicadores</h2>
+      <div class="kpis">
+        <article><span>Receita</span><strong id="kpiRevenue">R$ 0,00</strong></article>
+        <article><span>Total de alugueis</span><strong id="kpiTotal">0</strong></article>
+        <article><span>Ticket medio</span><strong id="kpiTicket">R$ 0,00</strong></article>
+        <article><span>Cancelamento</span><strong id="kpiCancelRate">0%</strong></article>
+        <article><span>Comparativo YoY</span><strong id="kpiYoy">N/A</strong></article>
+        <article><span>Previsao proximo mes</span><strong id="kpiForecast">R$ 0,00</strong></article>
+      </div>
+      <p id="trendMessage" class="status"></p>
+    </section>
+
+    <section class="panel two-col">
+      <div>
+        <h2>Metas mensais</h2>
+        <form id="goalsForm" class="stack">
+          <input id="goalRevenue" type="number" min="0" step="0.01" placeholder="Meta de receita (R$)" required />
+          <input id="goalRentals" type="number" min="0" step="1" placeholder="Meta de quantidade de alugueis" required />
+          <button type="submit">Salvar metas</button>
+        </form>
+        <div class="goal-box">
+          <p id="goalSummary">Sem metas salvas para o recorte atual.</p>
+          <div class="progress"><span id="goalRevenueProgress"></span></div>
+          <div class="progress"><span id="goalRentalsProgress"></span></div>
+          <h3>Historico de alteracoes</h3>
+          <ul id="goalsHistory" class="history-list"></ul>
+        </div>
+      </div>
+
+      <div>
+        <h2>Simulador de impacto</h2>
+        <form id="simulatorForm" class="stack">
+          <input id="simCancelReduction" type="number" min="0" max="100" step="1" value="10" placeholder="Reducao de cancelamento (%)" />
+          <input id="simTicketIncrease" type="number" min="0" max="100" step="1" value="5" placeholder="Aumento de ticket medio (%)" />
+          <button type="submit">Simular cenarios</button>
+        </form>
+        <div class="sim-box">
+          <p id="simSummary">Defina os percentuais e rode a simulacao.</p>
+          <p id="forecastSummary">Previsao mensal aguardando atualizacao.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Grafico mensal (receita + volume)</h2>
+      <svg id="chart" viewBox="0 0 780 300" role="img" aria-label="Grafico mensal"></svg>
+    </section>
+
+    <section class="panel">
+      <h2>Heatmap por dia da semana</h2>
+      <div id="heatmap" class="heatmap"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Alertas estrategicos</h2>
+      <div id="alerts" class="alerts"></div>
+    </section>
+  </main>
+
+  <script src="bi.js"></script>
+</body>
+</html>
