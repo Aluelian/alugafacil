@@ -64,6 +64,23 @@ Abra no navegador:
 - Aplicacao: http://localhost:3000
 - Painel executivo: http://localhost:3000/bi.html
 
+## Publicar para outras pessoas
+
+O projeto pode ser publicado como um Web Service no Render:
+
+1. Envie o projeto para um repositorio no GitHub.
+2. No Render, escolha `New > Web Service` e conecte o repositorio.
+3. Use `npm install` como comando de build.
+4. Use `npm start` como comando de inicializacao.
+5. Cadastre a variavel `JWT_SECRET` com uma chave forte.
+6. Aguarde o deploy e compartilhe a URL gerada.
+
+O arquivo `render.yaml` ja deixa esses dados pre-configurados para um deploy inicial.
+Como o projeto usa SQLite, o plano gratuito deve ser tratado como demonstracao:
+os dados podem ser perdidos quando o servico for recriado ou reiniciado. Para uso
+permanente, o banco deve ser migrado para um servico persistente, como PostgreSQL,
+ou hospedado em um ambiente com disco persistente.
+
 ## Endpoints principais
 
 ### Autenticacao
