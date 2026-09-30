@@ -1,14 +1,14 @@
 :root {
-  --bg: #f5efe6;
-  --bg-accent: #d8e2dc;
-  --panel: #fffaf2;
-  --ink: #1b1f24;
-  --muted: #5f6973;
-  --primary: #b34700;
-  --primary-dark: #8f3700;
-  --success: #2f7d32;
-  --border: #d5cbbd;
-  --shadow: 0 20px 40px rgba(64, 43, 26, 0.12);
+  --bg: #eef3fb;
+  --bg-accent: #dbe7f4;
+  --panel: #ffffff;
+  --ink: #172b3a;
+  --muted: #526776;
+  --primary: #3155a6;
+  --primary-dark: #213b78;
+  --success: #287a58;
+  --border: #c8d6e5;
+  --shadow: 0 20px 40px rgba(36, 61, 105, 0.14);
 }
 
 * {
@@ -21,8 +21,8 @@ body {
   font-family: "DM Sans", sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at 20% 10%, #f3d2b0 0%, transparent 40%),
-    radial-gradient(circle at 90% 90%, #b8d7cc 0%, transparent 35%),
+    radial-gradient(circle at 20% 10%, #ffd6c2 0%, transparent 40%),
+    radial-gradient(circle at 90% 90%, #bcd9e6 0%, transparent 35%),
     linear-gradient(160deg, var(--bg), var(--bg-accent));
   overflow-x: hidden;
 }
@@ -40,7 +40,7 @@ body {
   height: 220px;
   top: -60px;
   left: -50px;
-  background: #efb98f;
+  background: #ffad8f;
 }
 
 .shape-2 {
@@ -48,7 +48,7 @@ body {
   height: 260px;
   right: -80px;
   bottom: -70px;
-  background: #a6c7ba;
+  background: #9ac6d8;
 }
 
 .container {
@@ -87,7 +87,7 @@ body {
 
 .study-note {
   margin: 8px 0 12px;
-  border: 1px dashed #c9b79f;
+  border: 1px dashed #b7c9dc;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.75);
   padding: 10px;
@@ -224,7 +224,7 @@ button {
 
 input:focus,
 select:focus {
-  outline: 2px solid #efb98f;
+  outline: 2px solid #ff9f80;
 }
 
 button {
@@ -242,7 +242,7 @@ button:hover {
 }
 
 .btn-secondary {
-  background: #2b3c4c;
+  background: #34495e;
 }
 
 .list {
@@ -283,12 +283,12 @@ button:hover {
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 700;
-  background: #efe7dc;
+  background: #e8eef7;
 }
 
 .pill.active {
-  background: #dcefd8;
-  color: #1f5d22;
+  background: #d9f0e5;
+  color: #216347;
 }
 
 .pill.cancelled {
@@ -297,8 +297,8 @@ button:hover {
 }
 
 .pill.finished {
-  background: #e3ecf7;
-  color: #244b7b;
+  background: #dce6ff;
+  color: #29488c;
 }
 
 .status {
@@ -331,7 +331,7 @@ button:hover {
 }
 
 .bi-link {
-  background: #2b3c4c;
+  background: #34495e;
   color: #fff;
   text-decoration: none;
   border-radius: 10px;
@@ -340,7 +340,7 @@ button:hover {
 }
 
 .bi-link:hover {
-  background: #1d2a36;
+  background: #263746;
 }
 
 .dashboard-panel {
@@ -350,7 +350,7 @@ button:hover {
 .admin-panel {
   margin-top: 14px;
   padding: 12px;
-  border: 1px dashed #c9b79f;
+  border: 1px dashed #b7c9dc;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.72);
   display: none;
@@ -369,7 +369,7 @@ button:hover {
 
 .rental-progress {
   height: 8px;
-  background: #efe7dc;
+  background: #e8eef7;
   border-radius: 999px;
   margin-top: 8px;
   overflow: hidden;
@@ -378,7 +378,7 @@ button:hover {
 .rental-progress span {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, #2f7d32, #4aa54f);
+  background: linear-gradient(90deg, #287a58, #54b887);
 }
 
 .admin-actions {
@@ -434,7 +434,7 @@ button:hover {
 }
 
 .range-chip.active {
-  background: #2b3c4c;
+  background: #34495e;
   color: #fff;
   border-color: #2b3c4c;
 }
@@ -554,7 +554,7 @@ button:hover {
 
 .bar-track {
   margin-top: 8px;
-  background: #efe7dc;
+  background: #e8eef7;
   border-radius: 999px;
   height: 9px;
   overflow: hidden;

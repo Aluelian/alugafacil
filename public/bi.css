@@ -1,11 +1,11 @@
 :root {
-  --bg: #f6f2ea;
-  --panel: #fffefb;
-  --ink: #1f242b;
-  --muted: #596372;
-  --primary: #1f5f6d;
-  --primary-dark: #164955;
-  --border: #d8cfc0;
+  --bg: #eef3fb;
+  --panel: #ffffff;
+  --ink: #172b3a;
+  --muted: #526776;
+  --primary: #3155a6;
+  --primary-dark: #213b78;
+  --border: #c8d6e5;
 }
 
 * {
@@ -16,7 +16,7 @@ body {
   margin: 0;
   font-family: "DM Sans", sans-serif;
   color: var(--ink);
-  background: linear-gradient(180deg, #f6f2ea 0%, #e8efe9 100%);
+  background: linear-gradient(180deg, #eef3fb 0%, #dbe7f4 100%);
 }
 
 .container {
@@ -73,7 +73,7 @@ a:hover {
 }
 
 .secondary {
-  background: #394a59;
+  background: #34495e;
 }
 
 .danger {
@@ -204,7 +204,7 @@ select {
   display: block;
   height: 100%;
   width: 0;
-  background: linear-gradient(90deg, #1f5f6d, #3f8b9d);
+  background: linear-gradient(90deg, #3155a6, #6a8ee0);
 }
 
 #chart {
